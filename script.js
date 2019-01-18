@@ -1,7 +1,56 @@
-// document.getElementById("count").textContent = document.getElementsByTagName("p").length;
+//Réalisation avec JIKIKI + rajout Recherche //-----------------------------------------------------------------
+
+
 $('#count').text($('p').length);
 
+$('.trash').on("click",
+    function() {
+      $(this).parent().remove();
+      $('#count').text($('p').length);
+    }
+  )
 
+  $('#btn-add').click(function() {
+    // $("p").text($("#add-message").val()) // Recovery the value champ text field 
+    $('body').append($('<div class="row new-last-row"> <img class="avatar" src="avatar-3.jpg"> <div class="content"><h6>Shadd Love</h6>  <p> ' + $("#add-message").val() + '</p></div> <img class="trash" src="trash.png" alt=""> </div>'));
+    // empty value
+    $("#add-message").val("")
+    // counter
+    $('#count').text($('p').length);
+    // delete
+    $('.trash').on("click",
+        function() {
+          $(this).parent().remove();
+          $('#count').text($('p').length);
+        }
+      )
+  })
+
+  $('#btn-search').click(function() {
+    console.log("hello world");
+    console.log($("#add-search").val());
+  
+    // last modification, to be able to search everywhere in the DOM
+    $('.row').show(800);
+  
+    $('h6').each(function(){
+      if($("#add-search").val().length > 0 && $("#add-search").val() != $(this).text() ){
+        $(this).parent().parent().fadeOut();
+      }
+    })
+    $("#add-search").val("")
+  })
+
+
+
+
+
+
+// Réalisation avec le DOM // --------------------------------------------------------------------------------
+
+
+
+// document.getElementById("count").textContent = document.getElementsByTagName("p").length;
 
 // for(var i=0; i<document.getElementsByClassName("trash").length; i++){
 //   document.getElementsByClassName("trash")[i].addEventListener("click",
@@ -11,14 +60,6 @@ $('#count').text($('p').length);
 //     }
 //   )
 // }
-$('.trash').on("click",
-    function() {
-      $(this).parent().remove();
-      $('#count').text($('p').length);
-    }
-  )
-
-
 
 // document.getElementById("btn-add").addEventListener("click",
 //   function() {
@@ -64,37 +105,6 @@ $('.trash').on("click",
 //     )
 //
 //   })
-$('#btn-add').click(function() {
-  // $("p").text($("#add-message").val())
-  $('body').append($('<div class="row new-last-row"> <img class="avatar" src="avatar-2.jpg"> <div class="content"><h6>Jeanne La Capsule</h6>  <p> ' + $("#add-message").val() + '</p></div>   <img class="trash" src="trash.png" alt=""> </div>'));
-  // empty value
-  $("#add-message").val("")
-  // counter
-  $('#count').text($('p').length);
-  // delete
-  $('.trash').on("click",
-      function() {
-        $(this).parent().remove();
-        $('#count').text($('p').length);
-      }
-    )
-})
-
-
-$('#btn-search').click(function() {
-  console.log("hello world");
-  console.log($("#add-search").val());
-
-  // last modification, to be able to search everywhere in the DOM
-  $('.row').show(800);
-
-  $('h6').each(function(){
-    if($("#add-search").val().length > 0 && $("#add-search").val() != $(this).text() ){
-      $(this).parent().parent().fadeOut();
-    }
-  })
-  $("#add-search").val("")
-})
 
 // $('#btn-search').click(function() {
 //   $('.row').show(800);
